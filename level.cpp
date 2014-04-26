@@ -21,7 +21,7 @@ Level::Level(int n)
 				if(rand()%5==1)
 				{
 					level[x][y].Solid=true;
-					level[x][y].setTexture(3);
+					level[x][y].setTexture(2);
 					level[x][y].setX(x);
 					level[x][y].setY(y);
 				} else

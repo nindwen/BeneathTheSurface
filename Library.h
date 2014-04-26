@@ -7,6 +7,7 @@
 #include <SDL2/SDL_image.h>
 #include "object.h"
 #include "listObject.h"
+#include "listMap.h"
 #include "level.h"
 
 //extern Library *library;
@@ -29,6 +30,8 @@ class Library {
 		SDL_Window* window;
 
 		listObject* objs;
+
+		Level *currentlevel;
 
 };
 extern Library *library;

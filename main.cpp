@@ -17,14 +17,15 @@ int main()
 	SDL_RenderClear(library->renderer);
 	testi.setTexture(texture);
 
-	Level level(1);
+	Level *level = new Level(1);
+	library->currentlevel=level;
 	
 	int x,y;
 	for(x=0;x<library->LEVEL_SIZE;x++)
 	{
 		for(y=0;y<library->LEVEL_SIZE;y++)
 		{
-			level.level[x][y].draw(library->renderer);
+			library->currentlevel->level[x][y].draw(library->renderer);
 		}
 	}
 
