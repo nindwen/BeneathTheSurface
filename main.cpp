@@ -12,7 +12,7 @@ int main()
 	testi.setY(50);
 
 	library->logError(std::cout,"Heh");
-	SDL_Texture* texture = library->loadTexture("texture.png");	
+	SDL_Texture* texture = library->loadTexture("data/texture.png");	
 
 	SDL_RenderClear(library->renderer);
 	testi.setTexture(texture);
