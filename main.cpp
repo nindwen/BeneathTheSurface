@@ -4,18 +4,29 @@ Library *library = new Library;
 
 int main()
 {
-
-
 	gameObject testi;
 	library->objs->add(&testi);
-	testi.setX(50);
-	testi.setY(50);
+	testi.setX(2);
+	testi.setY(3);
 
 	library->logError(std::cout,"Heh");
-	SDL_Texture* texture = library->loadTexture("data/texture.png");	
+	int texture = library->loadTexture("data/texture.png");	
+	library->loadTexture("data/jokutiili.png");
+	library->loadTexture("data/mursu.png");
 
 	SDL_RenderClear(library->renderer);
 	testi.setTexture(texture);
+
+	Level level(1);
+	
+	int x,y;
+	for(x=0;x<library->LEVEL_SIZE;x++)
+	{
+		for(y=0;y<library->LEVEL_SIZE;y++)
+		{
+			level.level[x][y].draw(library->renderer);
+		}
+	}
 
 	do
 	{
@@ -25,6 +36,4 @@ int main()
 	SDL_RenderPresent(library->renderer);
 	SDL_Delay(2000);
 	return 0;
-
-
 }

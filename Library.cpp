@@ -1,10 +1,12 @@
 #include "Library.h"
-extern Library library;
 
 Library::Library()
 {
 	SCREEN_WIDTH=600;
 	SCREEN_HEIGHT=300;
+	TILE_SIZE=40;
+	LEVEL_SIZE=40;
+	texIndex=0;
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0){
 		logError(std::cout, "SDL_Init");
 	}
@@ -29,11 +31,12 @@ void Library::logError(std::ostream &os, const std::string &msg)
 	os << msg << " error: " << SDL_GetError() << std::endl;
 }
 
-SDL_Texture* Library::loadTexture(const std::string &file) 
+int Library::loadTexture(const std::string &file) 
 {
 	SDL_Texture *texture = IMG_LoadTexture(renderer, file.c_str());
 	if (texture == nullptr){	
 		logError(std::cout, "LoadTexture");
 	}
-	return texture;
+	textures[texIndex]=texture;
+	return texIndex++;
 }

@@ -14,15 +14,14 @@ class gameObject {
 
 		virtual int update();
 		virtual int draw(SDL_Renderer *ren);
-		int setTexture(SDL_Texture* tex);
+		void setTexture(int i) { texIndex=i; }
 
-	private:
+	protected:
 		int x;
 		int y;
 		int w;
 		int h;
-		SDL_Texture* txt;
-
+		int texIndex;
 
 };
 

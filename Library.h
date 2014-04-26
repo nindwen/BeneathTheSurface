@@ -7,16 +7,23 @@
 #include <SDL2/SDL_image.h>
 #include "object.h"
 #include "listObject.h"
+#include "level.h"
 
+//extern Library *library;
 
 class Library {
 	public:
 		Library();
 		void logError(std::ostream &os, const std::string &msg);
-		SDL_Texture* loadTexture(const std::string &file);
+		int loadTexture(const std::string &file);
 
 		int SCREEN_WIDTH;
 		int SCREEN_HEIGHT;
+		int TILE_SIZE;
+		int LEVEL_SIZE;
+
+		SDL_Texture *textures[50];
+		int texIndex;
 
 		SDL_Renderer* renderer;
 		SDL_Window* window;
@@ -24,5 +31,6 @@ class Library {
 		listObject* objs;
 
 };
+extern Library *library;
 
 #endif

@@ -1,9 +1,9 @@
 #include "Library.h"
-extern Library library;
 
 gameObject::gameObject()
 {
-	x = y = h = w = 10;
+	x = y =0;
+	h = w =40;
 }
 
 gameObject::~gameObject()
@@ -11,19 +11,14 @@ gameObject::~gameObject()
 
 }
 
-int gameObject::setTexture(SDL_Texture* tex)
-{
-	txt=tex;
-}
-
 int gameObject::draw(SDL_Renderer *ren)
 {
 	SDL_Rect dst;
-	dst.x=x;
-	dst.y=y;
+	dst.x=x*library->TILE_SIZE;
+	dst.y=y*library->TILE_SIZE;
 	dst.w=w;
 	dst.h=h;
-	SDL_RenderCopy(ren, txt, NULL, &dst);
+	SDL_RenderCopy(ren, library->textures[texIndex], NULL, &dst);
 }
 
 int gameObject::update()
