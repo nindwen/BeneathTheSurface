@@ -4,10 +4,11 @@ Library *library = new Library;
 
 int main()
 {
-	gameObject testi;
+	Actor testi;
 	library->objs->add(&testi);
 	testi.setX(2);
 	testi.setY(3);
+	testi.setDestination(4,7);
 
 	library->logError(std::cout,"Heh");
 	int texture = library->loadTexture("data/texture.png");	
@@ -19,22 +20,34 @@ int main()
 
 	Level *level = new Level(1);
 	library->currentlevel=level;
-	
-	int x,y;
-	for(x=0;x<library->LEVEL_SIZE;x++)
+  bool quit=false;
+	while(!quit)
 	{
-		for(y=0;y<library->LEVEL_SIZE;y++)
+		SDL_Event e;
+		while (SDL_PollEvent(&e))
 		{
-			library->currentlevel->level[x][y].draw(library->renderer);
+			if (e.type == SDL_QUIT)
+			{
+				quit = true;
+			}
 		}
+		int x,y;
+		for(x=0;x<library->LEVEL_SIZE;x++)
+		{
+			for(y=0;y<library->LEVEL_SIZE;y++)
+			{
+				library->currentlevel->level[x][y].draw(library->renderer);
+			}
+		}
+
+		do
+		{
+			//library->objs->gCurrent()->data->update();
+			library->objs->gCurrent()->data->draw(library->renderer);
+		} while(library->objs->adv());
+
+		SDL_RenderPresent(library->renderer);
+		SDL_Delay(20);
 	}
-
-	do
-	{
-		library->objs->gCurrent()->data->draw(library->renderer);
-	} while(library->objs->adv());
-
-	SDL_RenderPresent(library->renderer);
-	SDL_Delay(2000);
 	return 0;
 }

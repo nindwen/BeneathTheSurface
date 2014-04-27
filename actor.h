@@ -8,11 +8,12 @@ class Actor : public gameObject
 	public:
 		void move(int x, int y);
 		virtual int update();
+		void setDestination(int x, int y) { destinationX=x; destinationY=y; }
 
 
 	protected:
-		listMap open;
-		listMap closed;
+		//listMap open;
+		//listMap closed;
 		int destinationX;
 		int destinationY;
 };

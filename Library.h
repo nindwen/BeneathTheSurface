@@ -9,6 +9,7 @@
 #include "listObject.h"
 #include "listMap.h"
 #include "level.h"
+#include "actor.h"
 
 //extern Library *library;
 

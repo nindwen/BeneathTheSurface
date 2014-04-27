@@ -22,6 +22,7 @@ listMap::listMap()
 
 nodeMap* listMap::getNode(int x, int y)
 {
+	if(first==nullptr) { return nullptr; }
 	nodeMap* temp=first;
 	while(1)
 	{
@@ -43,6 +44,10 @@ int listMap::add(int x, int y, int parentX, int parentY)
 	node->x=x;
 	node->y=y;
 	node->parent=getNode(parentX, parentY);
+	if(node->parent==nullptr)
+	{
+		node->parent=node;
+	}
 
 	if(first==nullptr)
 	{
@@ -55,9 +60,12 @@ int listMap::add(int x, int y, int parentX, int parentY)
 	else
 	{
 		first->prev=node;
-		node->next=node;
-		node->prev=nullptr;
+		
+		nodeMap*temp = first;
+
 		first=node;
+		node->next=temp;
+		node->prev=nullptr;
 	}
 	return 1;
 }
@@ -110,6 +118,10 @@ int listMap::adv()
 
 nodeMap* listMap::lowestF()
 {
+	if(first==nullptr)
+	{
+		return nullptr;
+	}
 	nodeMap* temp = first;
 	nodeMap* low = first;
 

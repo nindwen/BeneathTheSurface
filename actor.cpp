@@ -5,9 +5,13 @@ int Actor::update()
 {
 	if(x != destinationX && y != destinationY)
 	{
-		listMap *open;
-		listMap *closed;
+		listMap tOpen, tClosed;
+		listMap* open;
+		listMap* closed;
+		open=&tOpen;
+		closed=&tClosed;
 		open->add(x,y,x,y);
+		open->getNode(x,y)->parent=open->getNode(x,y);
 		open->first->G=0;
 		open->setValues(x,y,destinationX,destinationY);
 
@@ -41,8 +45,8 @@ int Actor::update()
 						break;
 				}
 
-				if(library->currentlevel->level[current->x+tx][current->y+ty].Solid 
-						&& closed->getNode(current->x+tx,current->y+ty) == nullptr)
+				if(!library->currentlevel->level[current->x+tx][current->y+ty].Solid 
+						&& closed->getNode(current->x+tx, current->y+ty) == nullptr)
 				{
 					if(open->getNode(current->x+tx,current->y+ty) == nullptr)
 					{
