@@ -84,6 +84,7 @@ int Actor::update()
 			temp=temp->parent;
 		}
 	}
+	return 1;
 }
 
 void Actor::move(int x, int y)

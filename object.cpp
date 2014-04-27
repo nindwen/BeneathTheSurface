@@ -19,9 +19,11 @@ int gameObject::draw(SDL_Renderer *ren)
 	dst.w=w;
 	dst.h=h;
 	SDL_RenderCopy(ren, library->textures[texIndex], NULL, &dst);
+	return 1;
 }
 
 int gameObject::update()
 {
+	return 1;
 
 }
