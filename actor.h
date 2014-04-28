@@ -6,9 +6,10 @@
 class Actor : public gameObject
 {
 	public:
+		Actor(int x, int y);
 		void move(int x, int y);
 		virtual int update();
-		void setDestination(int x, int y) { destinationX=x; destinationY=y; }
+		int setDestination(int x, int y);
 
 
 	protected:

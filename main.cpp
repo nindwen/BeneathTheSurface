@@ -4,29 +4,31 @@ Library *library = new Library;
 
 int main()
 {
-	Actor testi;
-	library->objs->add(&testi);
-	testi.setX(3);
-	testi.setY(3);
-	testi.setDestination(8,8);
 
-	Actor testi2;
-	library->objs->add(&testi2);
-	testi2.setX(8);
-	testi2.setY(4);
-	testi2.setDestination(12,12);
-
-	library->logError(std::cout,"Heh");
 	int texture = library->loadTexture("data/texture.png");	
 	library->loadTexture("data/jokutiili.png");
 	library->loadTexture("data/mursu.png");
 
 	SDL_RenderClear(library->renderer);
-	testi.setTexture(texture);
-	testi2.setTexture(texture);
 
 	Level *level = new Level(1);
 	library->currentlevel=level;
+
+	Actor testi(3,3);
+	library->objs->add(&testi);
+	if(!testi.setDestination(8,8))
+	{
+		std::cout << "pröl";
+	}
+
+	Actor testi2(12,12);
+	library->objs->add(&testi2);
+	if(!testi2.setDestination(0,0))
+	{
+		std::cout << "pril";
+	}
+	testi.setTexture(texture);
+	testi2.setTexture(texture);
   bool quit=false;
 	while(!quit)
 	{

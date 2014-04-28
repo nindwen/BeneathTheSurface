@@ -32,13 +32,6 @@ Level::Level(int n)
 					level[x][y].setY(y);
 				}
 
-				if( (x==0 || y==0) || (x==library->LEVEL_SIZE-1 || y==library->LEVEL_SIZE-1) )
-				{
-					level[x][y].Solid=true;
-					level[x][y].setTexture(2);
-					level[x][y].setX(x);
-					level[x][y].setY(y);
-				}
 			}
 		}
 }
@@ -88,6 +81,10 @@ listMap* Level::findPath(int x, int y, int destinationX, int destinationY)
 					break;
 			}
 
+			if( (current->x==0 || current->y==0) || (current->x==library->LEVEL_SIZE-1 || current->y==library->LEVEL_SIZE-1) )
+			{
+				break;
+			}
 			if(library->currentlevel->level[current->x+tx][current->y+ty].Solid == false
 					&& closed->getNode(current->x+tx, current->y+ty) == nullptr)
 			{
