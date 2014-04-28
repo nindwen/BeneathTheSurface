@@ -23,7 +23,7 @@ int main()
 
 	Actor testi2(12,12);
 	library->objs->add(&testi2);
-	if(!testi2.setDestination(0,0))
+	if(!testi2.setDestination(1,1))
 	{
 		std::cout << "pril";
 	}
@@ -79,7 +79,7 @@ int main()
 		} while(library->objs->adv());
 
 		SDL_RenderPresent(library->renderer);
-		SDL_Delay(20);
+		//SDL_Delay(200);
 	}
 	return 0;
 }

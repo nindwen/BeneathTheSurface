@@ -108,12 +108,12 @@ nodeMap* listMap::lowestF()
 void listMap::setValues(int x, int y, int dx, int dy)
 {
 	nodeMap* node = getNode(x,y);
-	if(node==nullptr) { std::cout << "prkl\n";return; }
+	if(node==nullptr) { return; }
 	if(node->parent != nullptr)
 	{
 		node->G=node->parent->G+1;
 	}
-	else { node->G=0;std::cout << "hi\n"; }
+	else { node->G=0; }
 	node->H=abs(node->y - dy)+abs(node->x - dx);
 	node->F=node->G + node->H;
 }

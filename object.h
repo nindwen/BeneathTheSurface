@@ -17,6 +17,10 @@ class gameObject {
 		void setTexture(int i) { texIndex=i; }
 
 	protected:
+		int moving;
+		int speed;
+		int dx;
+		int dy;
 		int x;
 		int y;
 		int w;
