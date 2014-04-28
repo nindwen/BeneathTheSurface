@@ -33,6 +33,8 @@ class Library {
 
 		SDL_Renderer* renderer;
 		SDL_Window* window;
+		bool lClicked;
+		bool rClicked;
 
 		listObject* objs;
 

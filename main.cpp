@@ -16,14 +16,14 @@ int main()
 
 	Actor testi(3,3);
 	library->objs->add(&testi);
-	if(!testi.setDestination(8,8))
+	if(!testi.setDestination(23,23))
 	{
 		std::cout << "pröl";
 	}
 
 	Actor testi2(12,12);
 	library->objs->add(&testi2);
-	if(!testi2.setDestination(1,1))
+	if(!testi2.setDestination(6,19))
 	{
 		std::cout << "pril";
 	}
@@ -33,13 +33,23 @@ int main()
 
 	Light valo1(5,3);
 	Light valo2(12,1);
+	Light valo3(23,23);
+	Light valo4(6,19);
 	valo1.setTexture(valotek);
 	valo2.setTexture(valotek);
+	valo3.setTexture(valotek);
+	valo4.setTexture(valotek);
 	library->objs->add(&valo1);
 	library->objs->add(&valo2);
+	library->objs->add(&valo3);
+	library->objs->add(&valo4);
   bool quit=false;
 	while(!quit)
 	{
+	
+		library->lClicked=false;
+		library->rClicked=false;
+
 		SDL_Event e;
 		while (SDL_PollEvent(&e))
 		{
@@ -63,9 +73,26 @@ int main()
 					case SDLK_RIGHT:
 						library->cameraX-=library->CAMERA_SPEED;
 						break;
+					case SDLK_SPACE:
+						library->TILE_SIZE-=10;
+						break;
+					case SDLK_PLUS:
+						library->TILE_SIZE+=10;
+						break;
 					default:
 						break;
 				} 
+			}
+			else if(e.type == SDL_MOUSEBUTTONUP)
+			{
+				if(e.button.button == SDL_BUTTON_LEFT)
+				{
+					library->lClicked=true;
+				}
+				else if(e.button.button == SDL_BUTTON_RIGHT)
+				{
+					library->rClicked=true;
+				}
 			}
 		}
 

@@ -15,6 +15,7 @@ class Actor : public gameObject
 	protected:
 		//listMap open;
 		//listMap closed;
+		bool selected;
 		int destinationX;
 		int destinationY;
 };

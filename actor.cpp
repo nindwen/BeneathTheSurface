@@ -13,10 +13,43 @@ Actor::Actor(int x, int y)
 	speed=5;
 	dx=dy=0;
 	lightLevel=12;
+
+	selected=false;
 }
 
 int Actor::update()
 {
+	
+	if(library->lClicked)
+	{
+		int x,y;
+		SDL_GetMouseState(&x,&y);
+		x-=library->cameraX;
+		y-=library->cameraY;
+
+		if( (x>=this->x*library->TILE_SIZE && x<=this->x*library->TILE_SIZE+library->TILE_SIZE) && (y>=this->y*library->TILE_SIZE && y<= this->y*library->TILE_SIZE+library->TILE_SIZE))
+		{
+			selected=true;
+			library->lClicked=false;
+		}
+		else 
+		{
+			selected=false;
+		}
+	}
+	if(library->rClicked && selected)
+	{
+		int x,y;
+		SDL_GetMouseState(&x,&y);
+		x-=library->cameraX;
+		y-=library->cameraY;
+
+		selected=false;
+
+		setDestination(x/library->TILE_SIZE,y/library->TILE_SIZE);
+	}
+		
+
 	if(moving)
 	{
 		if(dx==0 && dy==0)
@@ -64,8 +97,8 @@ void Actor::move(int x, int y)
 {
 	this->x+=x;
 	this->y+=y;
-	dx-=40*x;
-	dy-=40*y;
+	dx-=library->TILE_SIZE*x;
+	dy-=library->TILE_SIZE*y;
 	moving=1;
 
 	lightLevel=library->currentlevel->level[this->x][this->y].lightLevel;

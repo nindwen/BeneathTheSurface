@@ -3,7 +3,7 @@
 gameObject::gameObject()
 {
 	x = y =0;
-	h = w =40;
+	h = w = library->TILE_SIZE;
 	moving=0;
 	speed=0;
 	dx=dy=0;
