@@ -12,8 +12,6 @@
 #include "actor.h"
 #include "light.h"
 
-//extern Library *library;
-
 class Library {
 	public:
 		Library();
@@ -26,18 +24,17 @@ class Library {
 		int LEVEL_SIZE;
 		int CAMERA_SPEED;
 
+		bool lClicked;
+		bool rClicked;
+
 		SDL_Texture *textures[50];
 		int texIndex;
 
 		int cameraX, cameraY;
-
 		SDL_Renderer* renderer;
 		SDL_Window* window;
-		bool lClicked;
-		bool rClicked;
 
 		listObject* objs;
-
 		Level *currentlevel;
 
 };

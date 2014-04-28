@@ -19,7 +19,6 @@ Actor::Actor(int x, int y)
 
 int Actor::update()
 {
-	
 	if(library->lClicked)
 	{
 		int x,y;
@@ -70,6 +69,7 @@ int Actor::update()
 	}
 	else
 	{
+		//If we are not moving and are not ind destination, search path
 		if(x != destinationX || y != destinationY)
 		{
 			listMap* closed = library->currentlevel->findPath(x,y,destinationX,destinationY);
@@ -97,15 +97,18 @@ void Actor::move(int x, int y)
 {
 	this->x+=x;
 	this->y+=y;
+	//Smooth movement-stuff:
 	dx-=library->TILE_SIZE*x;
 	dy-=library->TILE_SIZE*y;
 	moving=1;
 
+	//Update lightleve
 	lightLevel=library->currentlevel->level[this->x][this->y].lightLevel;
 } 
 
 int Actor::setDestination(int x, int y)
 { 
+	//If accesible
 	if(library->currentlevel->level[x][y].Solid || (x==0 || y==0) || (x==library->LEVEL_SIZE-1 || y==library->LEVEL_SIZE-1) )
 	{
 		return 0;

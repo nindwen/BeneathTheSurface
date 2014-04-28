@@ -2,13 +2,17 @@
 
 Library::Library()
 {
+	//Init globals
 	SCREEN_WIDTH=600;
 	SCREEN_HEIGHT=600;
 	TILE_SIZE=40;
 	LEVEL_SIZE=25;
 	CAMERA_SPEED=20;
 	cameraX = cameraY = 0;
+
 	texIndex=0;
+
+	//Init SDL
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0){
 		logError(std::cout, "SDL_Init");
 	}
@@ -25,9 +29,11 @@ Library::Library()
 		SDL_Quit();
 	}
 
+	//List of gameObjects
 	objs = new listObject();
 }
 
+//General functions
 void Library::logError(std::ostream &os, const std::string &msg)
 {
 	os << msg << " error: " << SDL_GetError() << std::endl;

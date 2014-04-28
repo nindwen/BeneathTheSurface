@@ -43,10 +43,10 @@ int main()
 	library->objs->add(&valo2);
 	library->objs->add(&valo3);
 	library->objs->add(&valo4);
+
   bool quit=false;
 	while(!quit)
 	{
-	
 		library->lClicked=false;
 		library->rClicked=false;
 
@@ -96,10 +96,9 @@ int main()
 			}
 		}
 
-
 		SDL_RenderClear(library->renderer);
-		
 
+		//Draw current level
 		int x,y;
 		for(x=0;x<library->LEVEL_SIZE;x++)
 		{
@@ -110,6 +109,7 @@ int main()
 			}
 		}
 
+		//gameObject loop
 		do
 		{
 			library->objs->gCurrent()->data->update();
@@ -117,7 +117,6 @@ int main()
 		} while(library->objs->adv());
 
 		SDL_RenderPresent(library->renderer);
-		//SDL_Delay(200);
 	}
 	return 0;
 }

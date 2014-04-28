@@ -16,6 +16,7 @@ class Level {
 		int n;
 
 		listMap* findPath(int x, int y, int dX, int dY);
+		//findPath returns listMap as path, or nullptr is path not found
 };
 
 #endif

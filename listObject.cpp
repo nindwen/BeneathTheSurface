@@ -1,5 +1,7 @@
 #include "Library.h"
 
+//listObject - list of nodeObjects that point to gameObjects
+
 nodeObject::nodeObject()
 {
 	next=nullptr;
