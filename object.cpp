@@ -17,6 +17,16 @@ gameObject::~gameObject()
 
 int gameObject::draw(SDL_Renderer *ren)
 {
+	//Highlight
+	int xx,xy;
+	SDL_GetMouseState(&xx,&xy);
+	xx-=library->cameraX;
+	xy-=library->cameraY;
+	if( (xx>=this->x*library->TILE_SIZE && xx<=this->x*library->TILE_SIZE+library->TILE_SIZE) && (xy>=this->y*library->TILE_SIZE && xy<= this->y*library->TILE_SIZE+library->TILE_SIZE))
+	{
+		lightLevel=12;
+	}
+
 	SDL_Rect dst;
 	dst.x=x*library->TILE_SIZE+library->cameraX+(float)dx;
 	dst.y=y*library->TILE_SIZE+library->cameraY+(float)dy;
