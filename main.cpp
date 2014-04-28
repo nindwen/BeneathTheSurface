@@ -6,9 +6,15 @@ int main()
 {
 	Actor testi;
 	library->objs->add(&testi);
-	testi.setX(2);
+	testi.setX(3);
 	testi.setY(3);
-	testi.setDestination(4,7);
+	testi.setDestination(5,8);
+
+	Actor testi2;
+	library->objs->add(&testi2);
+	testi2.setX(8);
+	testi2.setY(4);
+	testi2.setDestination(2,3);
 
 	library->logError(std::cout,"Heh");
 	int texture = library->loadTexture("data/texture.png");	
@@ -17,6 +23,7 @@ int main()
 
 	SDL_RenderClear(library->renderer);
 	testi.setTexture(texture);
+	testi2.setTexture(texture);
 
 	Level *level = new Level(1);
 	library->currentlevel=level;
@@ -42,12 +49,12 @@ int main()
 
 		do
 		{
-			//library->objs->gCurrent()->data->update();
+			library->objs->gCurrent()->data->update();
 			library->objs->gCurrent()->data->draw(library->renderer);
 		} while(library->objs->adv());
 
 		SDL_RenderPresent(library->renderer);
-		SDL_Delay(20);
+		SDL_Delay(200);
 	}
 	return 0;
 }

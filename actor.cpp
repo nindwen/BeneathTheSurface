@@ -3,24 +3,29 @@
 
 int Actor::update()
 {
-	if(x != destinationX && y != destinationY)
+	if(x != destinationX || y != destinationY)
 	{
 		listMap tOpen, tClosed;
 		listMap* open;
 		listMap* closed;
 		open=&tOpen;
 		closed=&tClosed;
-		open->add(x,y,x,y);
-		open->getNode(x,y)->parent=open->getNode(x,y);
+		nodeMap* newish = new nodeMap;
+		newish->x=x;
+		newish->y=y;
+		newish->parent=nullptr;
+		open->add(newish);
 		open->first->G=0;
 		open->setValues(x,y,destinationX,destinationY);
+
+		open->print();
 
 		while(1)
 		{
 			int leastOneFound=0;
 			nodeMap *current = open->lowestF();
 			open->rm(current->x,current->y);
-			closed->add(current->x,current->y,current->parent->x,current->parent->y);
+			closed->add(current);
 
 			int ty,tx;
 			for(int i=0;i<4;i++)
@@ -45,18 +50,22 @@ int Actor::update()
 						break;
 				}
 
-				if(!library->currentlevel->level[current->x+tx][current->y+ty].Solid 
+				if(library->currentlevel->level[current->x+tx][current->y+ty].Solid == false
 						&& closed->getNode(current->x+tx, current->y+ty) == nullptr)
 				{
 					if(open->getNode(current->x+tx,current->y+ty) == nullptr)
 					{
-						open->add(current->x+tx,current->y+ty,current->x,current->y);
+						nodeMap* newish = new nodeMap;
+						newish->x=current->x+tx;
+						newish->y=current->y+ty;
+						newish->parent=current;
+						open->add(newish);
 						open->setValues(current->x+tx,current->y+ty, destinationX, destinationY);
 						leastOneFound=1;
 					}
 					else
 					{
-						if(open->getNode(current->x+tx,current->y+ty)->G > open->getNode(current->x,current->y)->G+1)
+						if(open->getNode(current->x+tx,current->y+ty)->G > closed->getNode(current->x,current->y)->G+1)
 						{
 							open->getNode(current->x+tx,current->y+ty)->parent=open->getNode(current->x,current->y);
 							open->setValues(current->x+tx,current->y+ty,destinationX,destinationY);
@@ -74,12 +83,14 @@ int Actor::update()
 				break;
 			}
 		}
-		nodeMap* temp = closed->last;
+		closed->print();
+		nodeMap* temp = closed->first;
 		while(1)
 		{
-			if(temp->parent->x==destinationX && temp->parent->y==destinationY)
+			if(temp->parent->x==x && temp->parent->y==y)
 			{
 				move(temp->x-x,temp->y-y);
+				return 1;
 			}
 			temp=temp->parent;
 		}

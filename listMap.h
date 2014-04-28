@@ -5,7 +5,6 @@
 class nodeMap {
 	public:
 		nodeMap();
-		virtual ~nodeMap();
 
 		nodeMap* next;
 		nodeMap* prev;
@@ -18,18 +17,17 @@ class listMap {
 	public:
 		listMap();
 
-		int add(int x, int y, int parentX, int parentY);
+		int add(nodeMap* nod);
 		int rm(int x, int y);
-		int adv();
-		void dCurrent() { delete current; }
+		//void dCurrent() { }//delete current; }
 		void setValues(int x, int y, int dx, int dy);
 		nodeMap* getNode(int x, int y);
 		nodeMap* lowestF();
 
 		nodeMap *first;
 		nodeMap *last;
-		nodeMap *current;
-};
 
+		void print();
+};
 
 #endif

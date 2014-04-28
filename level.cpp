@@ -31,6 +31,14 @@ Level::Level(int n)
 					level[x][y].setX(x);
 					level[x][y].setY(y);
 				}
+
+				if( (x==0 || y==0) || (x==library->LEVEL_SIZE-1 || y==library->LEVEL_SIZE-1) )
+				{
+					level[x][y].Solid=true;
+					level[x][y].setTexture(2);
+					level[x][y].setX(x);
+					level[x][y].setY(y);
+				}
 			}
 		}
 }
