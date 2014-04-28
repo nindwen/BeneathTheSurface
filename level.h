@@ -5,6 +5,7 @@
 class Tile : public gameObject {
 	public:
 		Tile();
+		virtual int update();
 		bool Solid;
 };
 

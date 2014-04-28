@@ -10,6 +10,7 @@
 #include "listMap.h"
 #include "level.h"
 #include "actor.h"
+#include "light.h"
 
 //extern Library *library;
 

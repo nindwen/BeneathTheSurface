@@ -29,6 +29,14 @@ int main()
 	}
 	testi.setTexture(texture);
 	testi2.setTexture(texture);
+	int valotek=library->loadTexture("data/valo.png");
+
+	Light valo1(5,3);
+	Light valo2(12,1);
+	valo1.setTexture(valotek);
+	valo2.setTexture(valotek);
+	library->objs->add(&valo1);
+	library->objs->add(&valo2);
   bool quit=false;
 	while(!quit)
 	{
@@ -63,12 +71,15 @@ int main()
 
 
 		SDL_RenderClear(library->renderer);
+		
+
 		int x,y;
 		for(x=0;x<library->LEVEL_SIZE;x++)
 		{
 			for(y=0;y<library->LEVEL_SIZE;y++)
 			{
 				library->currentlevel->level[x][y].draw(library->renderer);
+				library->currentlevel->level[x][y].update();
 			}
 		}
 

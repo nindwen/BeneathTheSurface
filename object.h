@@ -15,6 +15,7 @@ class gameObject {
 		virtual int update();
 		virtual int draw(SDL_Renderer *ren);
 		void setTexture(int i) { texIndex=i; }
+		int lightLevel;
 
 	protected:
 		int moving;
@@ -26,6 +27,7 @@ class gameObject {
 		int w;
 		int h;
 		int texIndex;
+		
 
 };
 

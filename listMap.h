@@ -16,6 +16,7 @@ class nodeMap {
 class listMap {
 	public:
 		listMap();
+		~listMap();
 
 		int add(nodeMap* nod);
 		int rm(int x, int y);

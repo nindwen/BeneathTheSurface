@@ -13,6 +13,25 @@ listMap::listMap()
 	last=nullptr;
 }
 
+listMap::~listMap()
+{
+	nodeMap* current=last;
+	if(current==nullptr)
+	{
+		return;
+	}
+	while(1)
+	{
+		if(current->prev==nullptr)
+		{
+			return;
+		}
+		current=current->prev;
+		delete current->next;
+	}
+
+}
+
 nodeMap* listMap::getNode(int x, int y)
 {
 	if(first==nullptr) { return nullptr; }

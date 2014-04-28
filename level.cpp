@@ -4,6 +4,13 @@
 Tile::Tile()
 {
 	h = w = library->TILE_SIZE;
+	lightLevel=1;
+}
+
+int Tile::update()
+{
+	lightLevel=1;
+	return 1;
 }
 
 Level::Level(int n)
@@ -119,5 +126,6 @@ listMap* Level::findPath(int x, int y, int destinationX, int destinationY)
 		}
 	}
 
+	delete open;
 	return closed;
 }

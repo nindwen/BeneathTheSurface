@@ -12,6 +12,7 @@ Actor::Actor(int x, int y)
 	moving=0;
 	speed=5;
 	dx=dy=0;
+	lightLevel=12;
 }
 
 int Actor::update()
@@ -66,6 +67,8 @@ void Actor::move(int x, int y)
 	dx-=40*x;
 	dy-=40*y;
 	moving=1;
+
+	lightLevel=library->currentlevel->level[this->x][this->y].lightLevel;
 } 
 
 int Actor::setDestination(int x, int y)
