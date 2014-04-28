@@ -13,6 +13,8 @@ class Level {
 		Level(int n);
 		Tile **level;
 		int n;
+
+		listMap* findPath(int x, int y, int dX, int dY);
 };
 
 #endif
