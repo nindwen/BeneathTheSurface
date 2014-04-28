@@ -1,5 +1,4 @@
 #include "Library.h"
-extern Library library;
 
 nodeObject::nodeObject()
 {

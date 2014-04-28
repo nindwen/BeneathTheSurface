@@ -5,7 +5,9 @@ Library::Library()
 	SCREEN_WIDTH=600;
 	SCREEN_HEIGHT=600;
 	TILE_SIZE=40;
-	LEVEL_SIZE=15;
+	LEVEL_SIZE=25;
+	CAMERA_SPEED=20;
+	cameraX = cameraY = 0;
 	texIndex=0;
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0){
 		logError(std::cout, "SDL_Init");

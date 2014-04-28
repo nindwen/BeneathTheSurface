@@ -23,9 +23,12 @@ class Library {
 		int SCREEN_HEIGHT;
 		int TILE_SIZE;
 		int LEVEL_SIZE;
+		int CAMERA_SPEED;
 
 		SDL_Texture *textures[50];
 		int texIndex;
+
+		int cameraX, cameraY;
 
 		SDL_Renderer* renderer;
 		SDL_Window* window;

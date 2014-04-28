@@ -67,7 +67,7 @@ int Actor::update()
 					{
 						if(open->getNode(current->x+tx,current->y+ty)->G > closed->getNode(current->x,current->y)->G+1)
 						{
-							open->getNode(current->x+tx,current->y+ty)->parent=open->getNode(current->x,current->y);
+							open->getNode(current->x+tx,current->y+ty)->parent=closed->getNode(current->x,current->y);
 							open->setValues(current->x+tx,current->y+ty,destinationX,destinationY);
 						}
 					}

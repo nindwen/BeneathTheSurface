@@ -8,13 +8,13 @@ int main()
 	library->objs->add(&testi);
 	testi.setX(3);
 	testi.setY(3);
-	testi.setDestination(5,8);
+	testi.setDestination(8,8);
 
 	Actor testi2;
 	library->objs->add(&testi2);
 	testi2.setX(8);
 	testi2.setY(4);
-	testi2.setDestination(2,3);
+	testi2.setDestination(12,12);
 
 	library->logError(std::cout,"Heh");
 	int texture = library->loadTexture("data/texture.png");	
@@ -37,7 +37,30 @@ int main()
 			{
 				quit = true;
 			}
+			else if( e.type == SDL_KEYDOWN ) 
+			{ //Select surfaces based on key press 
+				switch( e.key.keysym.sym ) 
+				{
+					case SDLK_UP:
+						library->cameraY+=library->CAMERA_SPEED;
+						break;
+					case SDLK_DOWN:
+						library->cameraY-=library->CAMERA_SPEED;
+						break;
+					case SDLK_LEFT:
+						library->cameraX+=library->CAMERA_SPEED;
+						break;
+					case SDLK_RIGHT:
+						library->cameraX-=library->CAMERA_SPEED;
+						break;
+					default:
+						break;
+				} 
+			}
 		}
+
+
+		SDL_RenderClear(library->renderer);
 		int x,y;
 		for(x=0;x<library->LEVEL_SIZE;x++)
 		{
@@ -54,7 +77,7 @@ int main()
 		} while(library->objs->adv());
 
 		SDL_RenderPresent(library->renderer);
-		SDL_Delay(200);
+		SDL_Delay(20);
 	}
 	return 0;
 }
