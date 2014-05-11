@@ -39,11 +39,11 @@ int main()
 	valo2.setTexture(valotek);
 	valo3.setTexture(valotek);
 	valo4.setTexture(valotek);
-	library->objs->add(&valo1);
+/*	library->objs->add(&valo1);
 	library->objs->add(&valo2);
 	library->objs->add(&valo3);
 	library->objs->add(&valo4);
-
+*/
   bool quit=false;
 	while(!quit)
 	{

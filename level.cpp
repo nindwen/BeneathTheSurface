@@ -15,6 +15,11 @@ int Tile::update()
 
 Level::Level(int n)
 {
+
+	roomCount = 7;
+	rMinSize = 5;
+	rMaxSize = 12;
+
 	level = new Tile*[library->LEVEL_SIZE];
 	for (int i = 0; i < library->LEVEL_SIZE; i++)
 	{
@@ -25,22 +30,40 @@ Level::Level(int n)
 		{
 			for(y=0;y<library->LEVEL_SIZE;y++)
 			{
-				if(rand()%5==1)
-				{
-					level[x][y].Solid=true;
-					level[x][y].setTexture(2);
-					level[x][y].setX(x);
-					level[x][y].setY(y);
-				} else
-				{
-					level[x][y].Solid=false;
-					level[x][y].setTexture(1);
-					level[x][y].setX(x);
-					level[x][y].setY(y);
-				}
-
+			
+				level[x][y].Solid=true;
+				level[x][y].setTexture(2);
+				level[x][y].setX(x);
+				level[x][y].setY(y);
 			}
 		}
+	Room rooms[roomCount];
+	int i,j;	
+	for(i=0;i<roomCount;i++)
+		{
+		for(j=0;j<roomCount;j++)
+			{
+				if(rooms[i].roomsCollide(rooms[j])==true && i != j)
+					{
+						std::cout << "Collision with rooms " << i << " and " << j << "\n";
+rooms[i] = Room();
+i = 0;
+j = 0;
+					} 
+			}
+		}
+
+
+	for(i=0;i<roomCount;i++)
+		{
+			for(x=1;x<rooms[i].w-1;x++)
+				{
+					for(y=1;y<rooms[i].h-1;y++)
+						{
+							level[rooms[i].x+x][rooms[i].y+y].setTexture(1);
+						}
+				}
+		}		
 }
 
 
@@ -128,4 +151,25 @@ listMap* Level::findPath(int x, int y, int destinationX, int destinationY)
 
 	delete open;
 	return closed;
+}
+
+Room::Room() {
+	w = rand()%7+5;
+	h = rand()%7+5;
+	x = rand()%(library->LEVEL_SIZE-w);
+	y = rand()%(library->LEVEL_SIZE-h);
+	//roomCount ++;
+}
+
+Room::Room(int xValue, int yValue, int width, int height) {
+	x = xValue;
+	y = yValue;
+	w = width;
+	h = height;
+	//roomCount ++;
+}
+
+bool Room::roomsCollide(Room room) {
+	if(((this->x>=room.x && this->x-room.x<room.w-1) || (this->x<room.x && room.x-this->x<this->w-1)) && ((this->y>=room.y && this->y-room.y<room.h-1) || (this->y<room.y && room.y-this->y<this->h-1))) {return true;}
+	else{return false;}
 }
